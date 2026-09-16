@@ -1,0 +1,28 @@
+#include "common.h"
+
+Texture2D rt_tempzb;
+
+float4 m_hud_params;
+
+struct PSOutput
+{
+	// [elseform] Define every bound GBuffer target. Alpha blending preserves
+	// RT0-2 while RT3 receives scope mask.
+	float4 gbuf0 : SV_Target0;
+	float4 gbuf1 : SV_Target1;
+	float4 gbuf2 : SV_Target2;
+	float4 mask : SV_Target3;
+	float depth : SV_Depth;
+};
+
+PSOutput main(float4 hpos : SV_Position)
+{
+	PSOutput output;
+
+	output.gbuf0 = float4(0.0, 0.0, 0.0, 0.0);
+	output.gbuf1 = float4(0.0, 0.0, 0.0, 0.0);
+	output.gbuf2 = float4(0.0, 0.0, 0.0, 0.0);
+	output.depth = rt_tempzb[hpos.xy].x;
+	output.mask = float4(1.0, 0.0, 0.0, 1.0);
+	return output;
+}
