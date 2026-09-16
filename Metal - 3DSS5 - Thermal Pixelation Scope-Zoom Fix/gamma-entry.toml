@@ -24,10 +24,10 @@ name = "3D Shader Scopes for GAMMA"
 version = "5.0 Beta 2"
 
 [validation]
-state = "runtime-validated"
-checked_at = "2026-09-16"
-evidence = []
+state = "static-validated"
+checked_at = "2026-09-17"
+evidence = ["docs/mods/records/trace-2026-09-17-3dss-thermal-dlss-pixel-space.md"]
 
 [release]
-readiness = "ready"
+readiness = "needs-validation"
 blockers = []

@@ -29,10 +29,10 @@ name = "3D Shader Scopes for GAMMA"
 version = "5.0 Beta 2"
 
 [validation]
-state = "unvalidated"
+state = "static-validated"
 checked_at = "2026-09-17"
-evidence = []
+evidence = ["docs/mods/records/trace-2026-09-17-reflex-reticle-taa.md"]
 
 [release]
 readiness = "needs-validation"
-blockers = ["runtime validation pending"]
+blockers = []
