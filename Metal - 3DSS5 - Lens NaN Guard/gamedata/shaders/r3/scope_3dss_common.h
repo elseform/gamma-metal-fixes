@@ -168,14 +168,14 @@ float3 back_image_sample(float2 lens_tc, float2 back_tc, float power, bool blur,
 
 float scope_nvg_heat(float2 tc)
 {
-	float2 heat_pos = saturate(tc) * (screen_res.xy - 1.0);
+	float2 heat_pos = saturate(tc) * (gbuffer_pixel_size() - 1.0); // [elseform] G-buffer pixel space
 	float3 heat = s_heat.Load(int3(heat_pos, 0), 0).rgb;
 	return max(heat.r, max(heat.g, heat.b));
 }
 
 float scope_nvg_contour(float2 tc, float radius)
 {
-	float2 pixel = radius / screen_res.xy;
+	float2 pixel = radius / gbuffer_pixel_size(); // [elseform] G-buffer pixel space
 	float2 tc_left = saturate(tc - float2(pixel.x, 0.0));
 	float2 tc_right = saturate(tc + float2(pixel.x, 0.0));
 	float2 tc_up = saturate(tc - float2(0.0, pixel.y));
@@ -190,11 +190,11 @@ float scope_nvg_contour(float2 tc, float radius)
 		max(abs(heat_center - heat_up), abs(heat_center - heat_down)));
 	float heat_nearby = max(heat_center, max(max(heat_left, heat_right), max(heat_up, heat_down)));
 
-	gbuffer_data gbd_center = gbuffer_load_data(tc, tc * screen_res.xy, 0);
-	gbuffer_data gbd_left = gbuffer_load_data(tc_left, tc_left * screen_res.xy, 0);
-	gbuffer_data gbd_right = gbuffer_load_data(tc_right, tc_right * screen_res.xy, 0);
-	gbuffer_data gbd_up = gbuffer_load_data(tc_up, tc_up * screen_res.xy, 0);
-	gbuffer_data gbd_down = gbuffer_load_data(tc_down, tc_down * screen_res.xy, 0);
+	gbuffer_data gbd_center = gbuffer_load_data(tc, tc * gbuffer_pixel_size(), 0); // [elseform] G-buffer pixel space
+	gbuffer_data gbd_left = gbuffer_load_data(tc_left, tc_left * gbuffer_pixel_size(), 0);
+	gbuffer_data gbd_right = gbuffer_load_data(tc_right, tc_right * gbuffer_pixel_size(), 0);
+	gbuffer_data gbd_up = gbuffer_load_data(tc_up, tc_up * gbuffer_pixel_size(), 0);
+	gbuffer_data gbd_down = gbuffer_load_data(tc_down, tc_down * gbuffer_pixel_size(), 0);
 	float3 center_normal = normalize(gbd_center.N + 0.0001);
 	float normal_left = 1.0 - saturate(dot(center_normal, normalize(gbd_left.N + 0.0001)));
 	float normal_right = 1.0 - saturate(dot(center_normal, normalize(gbd_right.N + 0.0001)));

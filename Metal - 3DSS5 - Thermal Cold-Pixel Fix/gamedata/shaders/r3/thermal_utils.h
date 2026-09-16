@@ -17,6 +17,20 @@
     Texture2D   s_heat;
 #endif
 
+// [elseform] The engine can render the G-buffer and s_heat at an internal (DLSS) resolution
+// smaller than screen_res, which HUD/post passes set to the output size. Load() needs the
+// targets' own pixel size or it reads the wrong texel, or past the edge (undefined on Metal).
+float2 gbuffer_pixel_size()
+{
+#ifdef USE_MSAA
+	return screen_res.xy;
+#else
+	uint w, h;
+	s_heat.GetDimensions(w, h);
+	return float2(w, h);
+#endif
+}
+
 #define COLOR_COLD_MIN 0.24
 #define COLOR_COLD_MAX 0.36
 #define COLOR_HOT 0.8
@@ -37,7 +51,7 @@ float3 normal_blur(float2 pos2d, int samples)
 
 float infrared(gbuffer_data gbd, float2 HPos, float2 Tex0) 
 {	
-    float3 hotness3 = s_heat.Load(int3(Tex0 * screen_res.xy, 0 ), 0).rgb;
+    float3 hotness3 = s_heat.Load(int3(Tex0 * gbuffer_pixel_size(), 0 ), 0).rgb; // [elseform] G-buffer pixel space
 	float hotness = max(hotness3.r, max(hotness3.g, hotness3.b));
     
     float depth = gbd.P.z;
