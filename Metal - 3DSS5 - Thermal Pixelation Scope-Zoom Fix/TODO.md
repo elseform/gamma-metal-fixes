@@ -9,6 +9,8 @@ repository: gamma-metal-fixes
 
 ## Active
 
+- [ ] <!-- task:thermal-fix-no-effect-2026-09-17 --> 2026-09-17 in-game report: the `gbuffer_pixel_size()` fix (`c989f7e`) produced no visible change on SkeetIRx thermal, polarity invert, or T12W. Flat install carried the fixed files and the shader cache was rebuilt (01:11). Next: capture the same aimed scene post-fix and check the reticle draw's actual `s_heat` load coordinates and output. The heat buffer may be correct and something later (lens/overlay pass, IT_THERMAL branch not taken, a different reticle shader variant) may override it.
+
 - [ ] <!-- task:confirm-static-cleared --> Confirm static clears on a clip-on thermal (e.g. OASYS SkeetIRx) over a high-magnification day scope (k98 `_skeet` profile) under GPTK40b1.
 - [ ] <!-- task:check-non-chained-thermal --> Check a non-chained, dedicated thermal scope at high zoom for the same regression, since this touches shared code.
 
