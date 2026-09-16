@@ -1,0 +1,33 @@
+schema = 1
+id = "d3dmetal-atmospherics-2-69-rc7-2-sss24-core-fixes-elseform"
+name = "Metal - Atmospherics 2.69 RC7.2 SSS24 - Core Fixes"
+summary = "Metal compatibility fixes for Atmospherics 2.69 RC7.2 SSS24: bounded SSR raymarching in screenspace_reflections.h, a terrain parallax-occlusion loop hang guard in deffer_terrain_high_flat_d.ps, and rsqrt domain guards in ssfx_ao.ps (GTAO)."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "Atmospherics 2.69 RC7.2 SSS24"
+relationship = "load-after"
+version = "2.69 RC7.2"
+
+[[sources]]
+name = "Atmospherics 2.69 RC7.2 SSS24"
+version = "2.69 RC7.2"
+
+[[sources]]
+name = "Atmospherics 2.69 RC7.2 SSS23"
+version = "2.69 RC7.2"
+reference = "ssfx_ao.ps and ssfx_ao_blur.ps, copied directly from the installed MO2 mod 2026-09-08 (new coverage, Metal - Sams - GTAO confirmed dead/unreachable)"
+
+[validation]
+state = "static-validated"
+checked_at = "2026-09-08"
+evidence = ["docs/mods/records/atmospherics-2.69-rc6.92-vs-rc6.91-sss23.md"]
+
+[release]
+readiness = "ready"
+blockers = []

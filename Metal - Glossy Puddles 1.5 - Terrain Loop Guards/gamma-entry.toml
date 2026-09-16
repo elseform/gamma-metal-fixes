@@ -1,0 +1,24 @@
+schema = 1
+id = "d3dmetal-glossy-puddles-1-5-terrain-loop-guards-elseform"
+name = "Metal - Glossy Puddles 1.5 - Terrain Loop Guards"
+summary = "Bounds terrain parallax loops so malformed shader input cannot hang the GPU under Metal or DXMT."
+lifecycle = "released"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["config", "packaging", "shader"]
+version = "1.0.0"
+maintenance = "active"
+
+dependencies = []
+[[sources]]
+name = "Glossy Puddles"
+version = "1.5"
+
+
+[validation]
+state = "static-validated"
+evidence = []
+
+[release]
+readiness = "released"
+blockers = []

@@ -1,0 +1,29 @@
+schema = 1
+id = "d3dmetal-anomaly-core-fixes-elseform"
+name = "Metal - Anomaly - Core Fixes"
+summary = "Fixes upstream HLSL syntax, preprocessor, recursion, motion-blur, wallmark sampler, and sunshaft NaN bugs in base Anomaly shaders for Metal and DXMT."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+dependencies = []
+
+[[sources]]
+name = "Anomaly base shaders"
+version = "unpacked from anomaly/db/shaders.db0"
+
+[[sources]]
+name = "Anomaly base / modded-exes gamedata"
+version = "unpacked from anomaly/db/shaders.db0 and 3dss5/db/mods/00_modded_exes_gamedata.db0"
+reference = "absorbed from retired d3dmetal-base-sunshafts-nan-guard-elseform"
+
+[validation]
+state = "runtime-validated"
+checked_at = "2026-08-24"
+evidence = []
+
+[release]
+readiness = "ready"
+blockers = []

@@ -1,0 +1,24 @@
+schema = 1
+id = "d3dmetal-anomaly-shadow-aref-input-layout-elseform"
+name = "Metal - Anomaly - Shadow Aref Input Layout"
+summary = "Metal compatibility fix for the sun-shadow alpha-ref pass: narrows shadow_direct_base_aref.vs to the vertex inputs it actually reads, so CreateInputLayout stops failing on a NORMAL semantic the draw never supplies."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+dependencies = []
+
+[[sources]]
+name = "Anomaly base shaders"
+version = "unpacked from sept/db/shaders.db0"
+
+[validation]
+state = "runtime-validated"
+checked_at = "2026-09-16"
+evidence = []
+
+[release]
+readiness = "ready"
+blockers = []

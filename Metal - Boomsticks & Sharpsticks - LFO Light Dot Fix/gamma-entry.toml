@@ -1,0 +1,28 @@
+schema = 1
+id = "d3dmetal-boomsticks-and-sharpsticks-lfo-light-dot-fix-elseform"
+name = "Metal - Boomsticks & Sharpsticks - LFO Light Dot Fix"
+summary = "Metal compatibility fix for the LFO light dot weapon shader: replaces a non-standard Texture2D.Load call with the defined integer-coordinate form in models_lfo_light_dot_weapons.ps, shipped by Boomsticks and Sharpsticks."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "Boomsticks and Sharpsticks"
+relationship = "load-after"
+version = "1.5.1"
+
+[[sources]]
+name = "Boomsticks and Sharpsticks"
+version = "1.5.1"
+
+[validation]
+state = "static-validated"
+checked_at = "2026-09-08"
+evidence = []
+
+[release]
+readiness = "ready"
+blockers = []

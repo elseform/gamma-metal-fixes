@@ -1,0 +1,28 @@
+schema = 1
+id = "d3dmetal-3dss5-reflex-reticle-semantics"
+name = "Metal - 3DSS5 - Reflex Reticle Semantics"
+summary = "Matches 3DSS5 reflex-reticle pixel-shader semantics to vertex-shader outputs."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "3D Shader Scopes for GAMMA"
+relationship = "load-after"
+version = "5.0 Beta 2"
+
+[[sources]]
+name = "3D Shader Scopes for GAMMA"
+version = "5.0 Beta 2"
+
+[validation]
+state = "runtime-validated"
+checked_at = "2026-09-01"
+evidence = []
+
+[release]
+readiness = "ready"
+blockers = []

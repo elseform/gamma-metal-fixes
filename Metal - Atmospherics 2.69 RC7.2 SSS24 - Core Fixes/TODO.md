@@ -1,0 +1,29 @@
+---
+schema: 1
+kind: entry
+entry: d3dmetal-atmospherics-2-69-rc7-2-sss24-core-fixes-elseform
+repository: gamma-metal-fixes
+---
+
+# Metal - Atmospherics 2.69 RC7.2 SSS24 - Core Fixes TODO
+
+## Active
+
+- [ ] <!-- task:install-when-sss24-atmos-active --> Install and enable only while `Atmospherics 2.69 RC7.2 SSS24` is the active variant, disabling the SSS23-variant entry at the same time. Both override the same paths and the higher-priority one wins regardless of which source is enabled.
+- [ ] <!-- task:recheck-variant-equality --> Re-run the variant diff after any Atmospherics update: the two variants currently ship byte-identical copies of all three files, which is why this payload matches its sibling. If that stops being true, rebase this entry on the SSS24 variant's own copies.
+
+- [ ] <!-- task:validate-gtao-rsqrt-guards --> `ssfx_ao.ps` added 2026-09-08 (new coverage, not part of the original entry scope — see README item 3): 2 `rsqrt` domain guards added to `ssfx_ao.ps`'s `calc_GTAO()` (`proj_normal_length_sq`, `s_vec_length`, both `continue` on degenerate input). Hand-traced against the live MO2 source, not yet run through `validate_shaders.py` or in-game. Watch for AO flicker/black-square corruption/history smearing at sky boundaries, thin foliage edges, weapon edges, rapid camera motion.
+
+## Completed
+
+- [x] <!-- task:drop-unmodified-ao-blur --> Dropped `ssfx_ao_blur.ps` 2026-09-10. It was audited and correctly needed no guard, but shipping it unmodified still made this entry win that file's conflict, which would mask a future upstream change to it. Overrides now ship only files this entry actually changes.
+
+- [x] <!-- task:fix-terrain-height-blend-divzero --> Investigated 2026-09-08 (project-wide Metal guard audit) as a suspected `HeightBlending()` `sum_h` div-by-zero coverage gap in this entry's `deffer_terrain_high_flat_d.ps`. Found moot — the function's only call site is commented out in this copy and in every other owning mod's copy (including `Metal - Glossy Puddles 1.5 - Terrain Loop Guards`'s "guarded" one). Dead code, no fix needed.
+- [x] <!-- task:rename-and-rebase-to-rc7-2 --> Renamed 2026-09-08 from `Metal - Atmospherics 2.69 RC6.92 - Core Fixes` to `Metal - Atmospherics 2.69 RC7.2 - Core Fixes` and updated `id` to `d3dmetal-atmospherics-2-69-rc7-2-sss24-core-fixes-elseform` (was `d3dmetal-atmospherics-2-69-rc6-8-ssr-raymarch-fix-elseform`, a stale leftover from before the RC6.8 SSR-Raymarch-Fix → Core-Fixes rename). Diffed `screenspace_reflections.h` and `deffer_terrain_high_flat_d.ps` against installed `Atmospherics 2.69 RC7.2`: both bugs still present, both fixes still apply cleanly, no content drift beyond CRLF/whitespace. Metadata-only rebase, no patch content changed.
+- [x] <!-- task:validate-ssr-reflection-pipeline --> Validate screenspace_reflections.h loop unrolling vs Metal shader compiler on scope lens reflections.
+- [x] <!-- task:playtest-atmospherics-terrain-loop-guard --> Clear shader cache and check dry and wet terrain with terrain POM enabled for the deffer_terrain_high_flat_d.ps guard.
+- [x] <!-- task:rebase-to-rc6-92 --> Rebased 2026-08-23 from `Atmospherics 2.69 RC6.91_SSS23` to `Atmospherics 2.69 RC6.92_SSS23`: `screenspace_reflections.h` and `deffer_terrain_high_flat_d.ps` are byte-identical between the two upstream versions (confirmed in `docs/mods/records/atmospherics-2.69-rc6.92-vs-rc6.91-sss23.md` in `gamma-project`), so patch content is unchanged. Checked RC6.92's changed `accum_volumetric_sun.ps` (new `EDGE_DEPTH_REJECT` depth-tap branch, tuning constants) and `lmodel.h` (`atteps` constant) for the same dynamic-unroll/unbounded-loop/OOB-array-index hazard classes this entry guards against; neither introduces one. `id` left unchanged (stable). Runtime validation (shader compile, in-game check, shader cache purge) still required once the modlist toggle from RC6.91 to RC6.92 is made.
+- [x] <!-- task:rebase-to-rc6-91 --> Rebased 2026-08-22 from `Atmospherics 2.69 RC6.8_SSS23` to `Atmospherics 2.69 RC6.91_SSS23`: `screenspace_reflections.h` and `deffer_terrain_high_flat_d.ps` are byte-identical between the two upstream versions (confirmed in `docs/research/atmospherics-2.69-rc6.91-vs-rc6.8-sss23.md` in `gamma-project`), so patch content is unchanged. Checked RC6.91's rewritten `accum_volumetric_sun.ps` and new `lod.ps` for the same dynamic-unroll TBDR divergence class this entry guards against; both use compile-time-bounded loops (`[loop]` over `#define pa`, `[unroll]` over `#define MSAA_SAMPLES`), no new hazard, no additional guard needed. `id` left unchanged (stable). Runtime validation (shader compile, in-game check, shader cache purge) still required once the modlist toggle from RC6.8 to RC6.91 is made.
+- [x] <!-- task:split-from-sss23-core-fixes --> Split out 2026-08-20 from `Metal - SSS23 - Core Fixes`: `screenspace_reflections.h` true source is `Atmospherics 2.69 RC6.8_SSS23`, not Screen Space Shaders 23. See parent entry TODO for the split rationale.
+- [x] <!-- task:patch-ssr-loop-bounds --> Replaced dynamic unroll attributes with explicit bounded [loop] attributes in `screenspace_reflections.h`.
+- [x] <!-- task:rename-ssr-fix-to-core-fixes --> Renamed 2026-08-20 from `Metal - Atmospherics 2.69 RC6.8 - SSR Raymarch Fix` to `Metal - Atmospherics 2.69 RC6.8 - Core Fixes` and folded in a `deffer_terrain_high_flat_d.ps` terrain parallax loop guard, rather than shipping a fourth standalone Terrain Loop Guards mod alongside `Metal - Glossy Puddles - Terrain Loop Guards`. `id` left unchanged (stable). Root cause: `Atmospherics 2.69 RC6.8_SSS23` ships the same unbounded `TerrainParallax` loop as Glossy Puddles 1.4 and Screen Space Shaders 23 - Ascii1457, but only the Glossy Puddles copy had a guard mod; this entry closes that gap for the Atmospherics copy.
