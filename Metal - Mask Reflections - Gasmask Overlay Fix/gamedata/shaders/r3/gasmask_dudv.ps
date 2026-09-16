@@ -18,6 +18,8 @@
 
 #include "common.h"
 #include "gasmask_common.h"
+// [elseform] Beef's NVG lens-mask helpers (compute_lens_mask, aspect_ratio_correction, shader_param_7/8).
+#include "night_vision.h"
 
 float visor_ratio(float s)
 {
@@ -39,13 +41,29 @@ float3 visor_reflection(float3 image, float2 tc)
     {
         float p = saturate((x / GM_VIS_RADIUS - 1.0) * 2.0);
 
+        // [elseform] Beef's NVG runs after this pass and, inside its tubes, s_image holds
+        // encoded channel data (R = luma, G = light, B = albedo), not color. Reflecting it
+        // smears red/purple into the screen edges, so skip samples inside the tube mask.
+        float nvg_generation = floor(shader_param_8.x);
+        float nvg_num_tubes = frac(shader_param_8.x) * 10.0f;
+        float valid_weight = 0.0;
+
         for (int i = 0; i < GM_VIS_NUM; i++)
         {
             float N = 1.0 - p / 0.6 + 0.4 * (i / (GM_VIS_NUM - 1.0)) * p;
             float2 m = (center - tc) * -N + center;
-            final += s_image.SampleLevel(smp_rtlinear, m, 0);
+            // [elseform] 1 outside NVG tubes (or with NVG off), 0 inside.
+            float w = 1.0;
+            if (nvg_generation > 0.0f)
+                w = 1.0 - compute_lens_mask(aspect_ratio_correction(m), nvg_num_tubes);
+            final += s_image.SampleLevel(smp_rtlinear, m, 0) * w;
+            valid_weight += w;
         }
-        final /= GM_VIS_NUM;
+
+        // [elseform] No usable samples: leave the image unreflected.
+        if (valid_weight < 0.5)
+            return image;
+        final /= valid_weight;
 		
 		// [elseform] Explicit float3 swizzle to prevent float3 + float4 arithmetic type mismatch.
 		float3 reflected = (image + GM_VIS_INTENSITY * final.rgb) / (1.0 + GM_VIS_INTENSITY);	
