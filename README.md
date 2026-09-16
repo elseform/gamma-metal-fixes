@@ -20,15 +20,19 @@ macOS. Each entry in this repo is a minimal, targeted patch to one upstream
 mod's shader for exactly one such failure — see [TESTING.md](TESTING.md) for
 how they're found and confirmed fixed.
 
-Each entry is named for the source mods it was built against and states the
-exact source versions in its own README. Clear `appdata/shaders_cache/`
-after installing or updating any of them.
+Each fix lives in its own folder here (see its README for the exact source
+version it was built against), but ships as **one combined installer**: a
+single FOMOD with a checkbox per upstream source mod. Tick every source mod
+you actually have installed and you get one MO2 mod containing exactly those
+fixes. Clear `appdata/shaders_cache/` after installing or updating.
 
 ### Installation
 
-Download the latest release from the
-[release page](https://github.com/elseform/gamma-metal-fixes/releases/latest),
-then install using Mod Organizer 2.
+Download the latest release `.zip` from the
+[release page](https://github.com/elseform/gamma-metal-fixes/releases/latest)
+and install it through Mod Organizer 2 like any FOMOD-based mod. When the
+installer's option screen appears, tick the source mods you have installed —
+leave the rest unticked.
 
 ### Usage and permissions
 
@@ -61,14 +65,17 @@ vertex/pixel-интерполяторы, и зависания GPU, которы
 одну конкретную поломку такого рода. Как они находятся и подтверждаются — см.
 [TESTING.md](TESTING.md).
 
-Каждая запись названа по исходному моду, под который она собрана, точные
-версии источников указаны в README самой записи. После установки или
-обновления любой из них нужно очистить `appdata/shaders_cache/`.
+Каждый фикс лежит в своей папке (точная версия исходника — в README этой
+записи), но поставляется **одним общим инсталлятором**: единый FOMOD с
+чекбоксом на каждый исходный мод. Отметьте те моды, что у вас реально
+установлены, — получите один MO2-мод именно с этими фиксами. После установки
+или обновления нужно очистить `appdata/shaders_cache/`.
 
 ### Установка
 
-Скачать последний релиз со [страницы релизов](https://github.com/elseform/gamma-metal-fixes/releases/latest)
-и установить через Mod Organizer 2.
+Скачать последний релиз (`.zip`) со [страницы релизов](https://github.com/elseform/gamma-metal-fixes/releases/latest)
+и установить через Mod Organizer 2, как обычный FOMOD-мод. На экране выбора
+опций отметить установленные исходные моды — остальное оставить без галочки.
 
 ### Использование и разрешения
 
