@@ -1,0 +1,28 @@
+schema = 1
+id = "d3dmetal-3dss5-scope-depth-restore-mrt-fix"
+name = "Metal - 3DSS5 - Scope Depth-Restore MRT Fix"
+summary = "Writes every 3DSS5 scope depth-restore render target under Metal."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "3D Shader Scopes for GAMMA"
+relationship = "load-after"
+version = "5.0 Beta 2"
+
+[[sources]]
+name = "3D Shader Scopes for GAMMA"
+version = "5.0 Beta 2"
+
+[validation]
+state = "runtime-validated"
+checked_at = "2026-09-16"
+evidence = []
+
+[release]
+readiness = "ready"
+blockers = []

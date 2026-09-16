@@ -1,0 +1,37 @@
+schema = 1
+id = "d3dmetal-sss23-24-glass-triplanar-index-fix-elseform"
+name = "Metal - SSS23+24 - Glass Triplanar Index Fix"
+summary = "Metal compatibility fix for ssfx_glass.ps: the fake-triplanar UV pick indexes I.P.xy (2 components) with an axis selector that can be 2, an out-of-bounds swizzle index the stricter Metal path does not tolerate the way FXC does."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "190- Screen Space Shaders 23 - Ascii1457"
+relationship = "load-after"
+version = "23"
+
+[[dependencies]]
+name = "ScreenSpaceShaders_Update_24 - RC1_hotfix2"
+relationship = "load-after"
+version = "Update 24 RC1 hotfix 2"
+
+[[sources]]
+name = "190- Screen Space Shaders 23 - Ascii1457"
+version = "23"
+
+[[sources]]
+name = "ScreenSpaceShaders_Update_24 - RC1_hotfix2"
+version = "Update 24 RC1 hotfix 2"
+
+[validation]
+state = "static-validated"
+checked_at = "2026-09-16"
+evidence = []
+
+[release]
+readiness = "ready"
+blockers = []

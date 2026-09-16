@@ -1,0 +1,24 @@
+schema = 1
+id = "d3dmetal-sss23-terrain-parallax-loop-guard-elseform"
+name = "Metal - SSS23 - Terrain Parallax Loop Guard"
+summary = "GPU-hang guard for terrain parallax in Screen Space Shaders 23's copy of deffer_terrain_high_flat_d.ps: caps TerrainParallax and its refinement loop, which are otherwise unbounded and have no TDR recovery on macOS."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "0.1.0"
+maintenance = "active"
+dependencies = []
+
+[[sources]]
+name = "190- Screen Space Shaders 23 - Ascii1457"
+version = "23"
+
+[validation]
+state = "static-validated"
+checked_at = "2026-08-20"
+evidence = []
+
+[release]
+readiness = "needs-validation"
+blockers = []

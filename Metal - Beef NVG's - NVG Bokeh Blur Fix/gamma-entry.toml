@@ -1,0 +1,28 @@
+schema = 1
+id = "d3dmetal-beef-nvgs-nvg-bokeh-blur-fix-elseform"
+name = "Metal - Beef NVG's - NVG Bokeh Blur Fix"
+summary = "Metal compatibility fix for NVG bokeh blur: converts floating-point loop counters to integer iteration in nightvision_gen_1/2/3.ps, shipped by 189- Beef's NVG - theRealBeef."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "0.1.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "189- Beef's NVG - theRealBeef"
+relationship = "load-after"
+version = "unknown"
+
+[[sources]]
+name = "189- Beef's NVG - theRealBeef"
+version = "unknown"
+
+[validation]
+state = "runtime-validated"
+checked_at = "2026-08-24"
+evidence = []
+
+[release]
+readiness = "needs-validation"
+blockers = []

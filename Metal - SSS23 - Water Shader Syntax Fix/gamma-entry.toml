@@ -1,0 +1,28 @@
+schema = 1
+id = "d3dmetal-sss23-water-shader-syntax-fix-elseform"
+name = "Metal - SSS23 - Water Shader Syntax Fix"
+summary = "Metal compatibility fix for water.ps: repairs a comma-operator constructor and a float3/float4 arithmetic mismatch that the stricter Metal path rejects."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "0.1.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "190- Screen Space Shaders 23 - Ascii1457"
+relationship = "load-after"
+version = "23"
+
+[[sources]]
+name = "190- Screen Space Shaders 23 - Ascii1457"
+version = "23"
+
+[validation]
+state = "static-validated"
+checked_at = "2026-08-20"
+evidence = []
+
+[release]
+readiness = "needs-validation"
+blockers = []

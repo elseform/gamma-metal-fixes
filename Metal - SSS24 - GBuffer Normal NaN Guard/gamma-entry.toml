@@ -1,0 +1,28 @@
+schema = 1
+id = "d3dmetal-sss24-gbuffer-normal-nan-guard-elseform"
+name = "Metal - SSS24 - GBuffer Normal NaN Guard"
+summary = "Metal compatibility fix for deferred normal unpacking: feathers the spherical reconstruction domain in gbuffer_stage.h so bilinear overshoot cannot produce NaNs, without the ring artifact a hard clamp leaves behind."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "ScreenSpaceShaders_Update_24 - RC1_hotfix2"
+relationship = "load-after"
+version = "24"
+
+[[sources]]
+name = "ScreenSpaceShaders_Update_24 - RC1_hotfix2"
+version = "24"
+
+[validation]
+state = "static-validated"
+checked_at = "2026-09-12"
+evidence = ["diff -Bbw gbuffer_stage.h: SSS23 source vs ScreenSpaceShaders_Update_24 base is byte-identical; fix delta is unaffected"]
+
+[release]
+readiness = "ready"
+blockers = []

@@ -1,0 +1,33 @@
+schema = 1
+id = "d3dmetal-3dss5-thermal-pixelation-scope-zoom-fix"
+name = "Metal - 3DSS5 - Thermal Pixelation Scope-Zoom Fix"
+summary = "Scales 3DSS5 thermal pixelation to the optic's own magnification, not just ADS FOV, to mask GBuffer noise at high scope zoom."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "3D Shader Scopes for GAMMA"
+relationship = "load-after"
+version = "5.0 Beta 2"
+
+[[dependencies]]
+name = "Metal - 3DSS5 - Lens NaN Guard"
+relationship = "load-after"
+version = "0.1.0"
+
+[[sources]]
+name = "3D Shader Scopes for GAMMA"
+version = "5.0 Beta 2"
+
+[validation]
+state = "runtime-validated"
+checked_at = "2026-09-16"
+evidence = []
+
+[release]
+readiness = "ready"
+blockers = []

@@ -1,0 +1,28 @@
+schema = 1
+id = "d3dmetal-sss23-taa-history-nan-guard-elseform"
+name = "Metal - SSS23 - TAA History NaN Guard"
+summary = "Metal compatibility fix for temporal anti-aliasing: guards the kdop_clipping reciprocal in ssfx_taa.ps so stationary pixels cannot contaminate the persistent TAA history buffer with NaNs."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "0.1.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "190- Screen Space Shaders 23 - Ascii1457"
+relationship = "load-after"
+version = "23"
+
+[[sources]]
+name = "190- Screen Space Shaders 23 - Ascii1457"
+version = "23"
+
+[validation]
+state = "static-validated"
+checked_at = "2026-08-20"
+evidence = []
+
+[release]
+readiness = "needs-validation"
+blockers = []

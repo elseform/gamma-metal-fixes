@@ -1,0 +1,28 @@
+schema = 1
+id = "d3dmetal-sss23-blur-integer-loops-elseform"
+name = "Metal - SSS23 - Blur Integer Loops"
+summary = "Metal compatibility fix for the post-process blur: replaces floating-point loop counters in pp_blur.ps with integer iteration to avoid precision drift and thread divergence under the Metal compiler."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "0.1.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "190- Screen Space Shaders 23 - Ascii1457"
+relationship = "load-after"
+version = "23"
+
+[[sources]]
+name = "190- Screen Space Shaders 23 - Ascii1457"
+version = "23"
+
+[validation]
+state = "static-validated"
+checked_at = "2026-08-20"
+evidence = []
+
+[release]
+readiness = "needs-validation"
+blockers = []

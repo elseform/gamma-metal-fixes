@@ -1,0 +1,52 @@
+#include "common.h"
+#include "shadow.h"
+
+struct PSInput
+{
+	float4 hpos   : SV_Position;
+	float4 hpos2d : TEXCOORD0;
+};
+
+float4 main(PSInput s) : SV_Target
+{
+	if (Ldynamic_color.w == 0.0f)
+		return 0.0f.xxxx;
+
+	uint2 r = uint2(s.hpos.xy);
+	uint m = (r.x ^ r.y) << 1u;
+	float z = float((m & 4u | r.y & 2u) >> 1u | (m & 2u | r.y & 1u) << 2u) * 0.0625f;
+	float2 f = s.hpos2d.xy / s.hpos2d.w * float2(0.5f, -0.5f) + 0.5f;
+	float2 w = f * screen_res.xy;
+	float u = s_position.SampleLevel(smp_nofilter, f, 0.0f).z;
+	u = u < 1e-4f ? 10000.0f : u;
+	u = min(u, s.hpos.w);
+
+	float3 h = float3(u * (w * pos_decompression_params.zw - pos_decompression_params.xy), u);
+	float3 e = mul(m_inv_V, float4(h, 1.0f)).xyz;
+	uint x = 8;
+	float p = length(e - eye_position) / x;
+	float3 l = eye_position;
+	float3 n = normalize(e - eye_position);
+	float3 y = n * p;
+	float3 d = l + y * z;
+	float L = 0.0f;
+
+	[loop]
+	for (uint P = 0; P < x; ++P)
+	{
+		float4 o = mul(m_shadow, float4(d, 1.0f));
+		o /= o.w;
+		float t = s_smap.SampleCmpLevelZero(smp_smap, o.xy, o.z + 2e-4f).x;
+		float3 V = Ldynamic_pos.xyz - d.xyz;
+		float a = dot(V, V);
+		float i = saturate(1.0f - a * Ldynamic_pos.w);
+		// [elseform] Guard rsqrt against 0 under Metal/DXMT.
+		i *= saturate(dot(-Ldynamic_dir.xyz, V * rsqrt(max(1e-6f, a))) + Ldynamic_dir.w);
+		L += t * i;
+		d += y;
+	}
+
+	L *= length(y);
+	L = 1.0f - exp(-L / 8.0f);
+	return float4(L * Ldynamic_color.xyz, 0.0f);
+}

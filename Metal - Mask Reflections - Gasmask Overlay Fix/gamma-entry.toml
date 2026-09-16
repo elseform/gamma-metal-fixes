@@ -1,0 +1,28 @@
+schema = 1
+id = "d3dmetal-mask-reflections-gasmask-overlay-fix-elseform"
+name = "Metal - Mask Reflections - Gasmask Overlay Fix"
+summary = "Metal compatibility fix for the gasmask overlay shader: repairs the comma-operator constructor and a float3/float4 arithmetic mismatch in gasmask_dudv.ps, shipped by 129- Mask Reflections - shader fix - Grokitach."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "129- Mask Reflections - shader fix - Grokitach"
+relationship = "load-after"
+version = "unknown"
+
+[[sources]]
+name = "129- Mask Reflections - shader fix - Grokitach"
+version = "unknown"
+
+[validation]
+state = "runtime-validated"
+checked_at = "2026-08-24"
+evidence = []
+
+[release]
+readiness = "ready"
+blockers = []

@@ -1,0 +1,28 @@
+schema = 1
+id = "d3dmetal-precomputed-gasmask-noise-raindrops-fix-elseform"
+name = "Metal - Precomputed Gasmask Noise - Gasmask Raindrops Fix"
+summary = "Metal compatibility fix for gasmask raindrops: adds sqrt and smoothstep domain protection in gasmask_drops.ps, shipped by 476- Precomputed Gasmask Noise - SoulCrystal & LVutner."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "476- Precomputed Gasmask Noise - SoulCrystal & LVutner"
+relationship = "load-after"
+version = "unknown"
+
+[[sources]]
+name = "476- Precomputed Gasmask Noise - SoulCrystal & LVutner"
+version = "unknown"
+
+[validation]
+state = "static-validated"
+checked_at = "2026-08-20"
+evidence = []
+
+[release]
+readiness = "ready"
+blockers = []

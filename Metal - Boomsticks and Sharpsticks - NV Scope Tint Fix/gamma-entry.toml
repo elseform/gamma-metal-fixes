@@ -1,0 +1,28 @@
+schema = 1
+id = "d3dmetal-boomsticks-and-sharpsticks-nv-scope-tint-fix-elseform"
+name = "Metal - Boomsticks and Sharpsticks - NV Scope Tint Fix"
+summary = "Metal compatibility fix for night-vision scope tint: replaces the comma-operator color constructor in models_scope_nv_1/2/3.ps, shipped by Boomsticks and Sharpsticks."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "Boomsticks and Sharpsticks"
+relationship = "load-after"
+version = "1.5.1"
+
+[[sources]]
+name = "Boomsticks and Sharpsticks"
+version = "1.5.1"
+
+[validation]
+state = "runtime-validated"
+checked_at = "2026-08-24"
+evidence = []
+
+[release]
+readiness = "ready"
+blockers = []
