@@ -71,7 +71,15 @@ float4 reticle_color(vf I)
 reticle_out main(vf I)
 {
 	reticle_out O;
-	O.color = reticle_color(I);
-	O.velocity = ssfx_mv_calc(I.vel_curr, I.vel_prev, 1, 1);
+	float4 reticle = reticle_color(I);
+	// [elseform] Premultiplied output for blend(one, invsrcalpha): rgb * a added onto the scene,
+	// exactly the old srcalpha/one additive result.
+	float3 added = reticle.rgb * reticle.a;
+	O.color = float4(added, 0.0);
+	// [elseform] Coverage of the visible reticle. The motion-vector target blends by this alpha,
+	// so HUD motion vectors and the TAA skip mask replace the world's vectors under the reticle
+	// strokes and leave the world behind the empty glass untouched.
+	float coverage = smoothstep(0.02, 0.25, max(added.r, max(added.g, added.b)));
+	O.velocity = ssfx_mv_calc(I.vel_curr, I.vel_prev, 1, 1) * coverage;
 	return O;
 }

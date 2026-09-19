@@ -1,12 +1,12 @@
 schema = 1
 id = "d3dmetal-3dss5-reflex-reticle-taa-mask"
 name = "Metal - 3DSS5 - Reflex Reticle TAA Mask"
-summary = "Writes HUD motion vectors and the SSS TAA skip mask from 3DSS5 reflex/holographic reticles so temporal AA and DLSS stop pulsing their brightness."
+summary = "Gives 3DSS5 reflex/holographic reticles HUD motion vectors and the SSS TAA skip mask under the visible strokes only, using premultiplied-alpha blending, so DLSS/TAA neither dims nor smears them."
 lifecycle = "wip"
 origin = "rework"
 category = "compatibility"
 implementation_domains = ["shader"]
-version = "1.0.0"
+version = "1.1.0"
 maintenance = "active"
 
 [[dependencies]]
@@ -17,7 +17,7 @@ version = "5.0 Beta 2"
 [[dependencies]]
 name = "Metal - 3DSS5 - Reflex Reticle Semantics"
 relationship = "load-after"
-version = "1.0.0"
+version = "1.1.0"
 
 [[dependencies]]
 name = "Screen Space Shaders"
@@ -30,8 +30,8 @@ version = "5.0 Beta 2"
 
 [validation]
 state = "static-validated"
-checked_at = "2026-09-17"
-evidence = ["docs/mods/records/trace-2026-09-17-reflex-reticle-taa.md"]
+checked_at = "2026-09-19"
+evidence = ["docs/mods/records/trace-2026-09-17-reflex-reticle-taa.md", "docs/mods/records/trace-2026-09-19-3dss-thermal-and-magnifier-sss24.md"]
 
 [release]
 readiness = "needs-validation"
