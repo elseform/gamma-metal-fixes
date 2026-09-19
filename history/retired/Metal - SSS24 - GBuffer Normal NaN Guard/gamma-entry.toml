@@ -2,12 +2,14 @@ schema = 1
 id = "d3dmetal-sss24-gbuffer-normal-nan-guard-elseform"
 name = "Metal - SSS24 - GBuffer Normal NaN Guard"
 summary = "Metal compatibility fix for deferred normal unpacking: feathers the spherical reconstruction domain in gbuffer_stage.h so bilinear overshoot cannot produce NaNs, without the ring artifact a hard clamp leaves behind."
-lifecycle = "wip"
+lifecycle = "retired"
+retired_at = "2026-09-19"
+retired_reason = "Not needed: disabled in daily play with no black speckling on lit surfaces (user, 2026-09-19); the stock gbuffer_stage.h shows zero isolated black pixels in four 2026-09-19 GPU traces."
 origin = "rework"
 category = "compatibility"
 implementation_domains = ["shader"]
 version = "1.0.0"
-maintenance = "retirement-candidate"
+maintenance = "active"
 
 [[dependencies]]
 name = "ScreenSpaceShaders_Update_24 - RC1_hotfix2"

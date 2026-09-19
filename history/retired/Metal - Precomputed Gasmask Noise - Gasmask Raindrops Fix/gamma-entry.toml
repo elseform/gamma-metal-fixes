@@ -2,12 +2,14 @@ schema = 1
 id = "d3dmetal-precomputed-gasmask-noise-raindrops-fix-elseform"
 name = "Metal - Precomputed Gasmask Noise - Gasmask Raindrops Fix"
 summary = "Metal compatibility fix for gasmask raindrops: adds sqrt and smoothstep domain protection in gasmask_drops.ps, shipped by 476- Precomputed Gasmask Noise - SoulCrystal & LVutner."
-lifecycle = "wip"
+lifecycle = "retired"
+retired_at = "2026-09-19"
+retired_reason = "Not needed: the gasmask raindrop effect breaks with this entry enabled and works without it; DXMT's own NaN handling appears sufficient (user, 2026-09-19)."
 origin = "rework"
 category = "compatibility"
 implementation_domains = ["shader"]
 version = "1.0.0"
-maintenance = "retirement-candidate"
+maintenance = "active"
 
 [[dependencies]]
 name = "476- Precomputed Gasmask Noise - SoulCrystal & LVutner"

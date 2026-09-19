@@ -2,12 +2,14 @@ schema = 1
 id = "d3dmetal-mask-reflections-gasmask-overlay-fix-elseform"
 name = "Metal - Mask Reflections - Gasmask Overlay Fix"
 summary = "Metal compatibility fix for the gasmask overlay shader: repairs the comma-operator constructor and a float3/float4 arithmetic mismatch in gasmask_dudv.ps, shipped by 129- Mask Reflections - shader fix - Grokitach."
-lifecycle = "wip"
+lifecycle = "retired"
+retired_at = "2026-09-19"
+retired_reason = "Not needed: the gasmask overlay breaks with this entry enabled and works without it; DXMT's own NaN handling appears sufficient (user, 2026-09-19). The open mask + NVG corner question now needs a stock re-check, not this entry."
 origin = "rework"
 category = "compatibility"
 implementation_domains = ["shader"]
 version = "1.0.0"
-maintenance = "retirement-candidate"
+maintenance = "active"
 
 [[dependencies]]
 name = "129- Mask Reflections - shader fix - Grokitach"
