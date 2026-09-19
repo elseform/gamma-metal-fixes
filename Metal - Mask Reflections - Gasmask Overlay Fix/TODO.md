@@ -9,6 +9,8 @@ repository: gamma-metal-fixes
 
 ## Active
 
+- [ ] <!-- task:retire-not-needed-2026-09-19 --> Retire: user report 2026-09-19, the effect breaks with this entry enabled and works without it; DXMT's own NaN handling appears sufficient. Supersedes the validation tasks below.
+
 - [ ] <!-- task:nvg-corners-still-broken-2026-09-17 --> 2026-09-17 in-game report: mask + NVG corners partially fixed but still look broken. Next: post-fix mask + NVG capture; compare corner RGB per pass against `docs/mods/records/trace-2026-09-17-gasmask-nvg-corners.md` (the refraction offset near the tube rim and the NVG outside-tube passthrough mode are unaddressed).
 
 - [ ] <!-- task:runtime-validate-gasmask-overlay --> Runtime-validate gasmask overlay rendering under DXMT after shader cache purge.

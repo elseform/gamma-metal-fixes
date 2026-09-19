@@ -9,6 +9,8 @@ repository: gamma-metal-fixes
 
 ## Active
 
+- [ ] <!-- task:retire-not-needed-2026-09-19 --> Retire: user report 2026-09-19, the effect breaks with this entry enabled and works without it; DXMT's own NaN handling appears sufficient. Supersedes the validation tasks below.
+
 - [ ] <!-- task:runtime-validate-gasmask-raindrops --> Runtime-validate gasmask raindrop overlay under DXMT after shader cache purge, in rain.
 
 ## Completed

@@ -7,7 +7,7 @@ origin = "rework"
 category = "compatibility"
 implementation_domains = ["shader"]
 version = "1.0.0"
-maintenance = "active"
+maintenance = "retirement-candidate"
 
 [[dependencies]]
 name = "129- Mask Reflections - shader fix - Grokitach"
