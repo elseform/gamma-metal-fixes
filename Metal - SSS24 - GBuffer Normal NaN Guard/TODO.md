@@ -9,6 +9,8 @@ repository: gamma-metal-fixes
 
 ## Active
 
+- [ ] <!-- task:retire-not-needed-2026-09-19 --> Retire: the entry is disabled in daily play and the user sees no black speckling on lit surfaces; the stock gbuffer_stage.h also shows zero isolated black pixels in four 2026-09-19 GPU traces. Supersedes the validation task below.
+
 - [ ] <!-- task:validate-gbuffer-normal-unpack-fix --> Validate the 2026-09-08 feathering in game: a rounded glossy surface under strong directional light, confirming no thin ring or banding where the normal sweeps through this basis's pole.
 
 ## Completed

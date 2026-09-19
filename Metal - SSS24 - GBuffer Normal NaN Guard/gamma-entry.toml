@@ -7,7 +7,7 @@ origin = "rework"
 category = "compatibility"
 implementation_domains = ["shader"]
 version = "1.0.0"
-maintenance = "active"
+maintenance = "retirement-candidate"
 
 [[dependencies]]
 name = "ScreenSpaceShaders_Update_24 - RC1_hotfix2"
