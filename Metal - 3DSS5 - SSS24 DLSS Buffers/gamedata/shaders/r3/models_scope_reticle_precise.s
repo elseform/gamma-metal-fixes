@@ -8,7 +8,10 @@ function normal(shader, t_base, t_second, t_detail)
 	: distort(true)
 	: scopelense(3)
 	shader:dx10texture("s_base", t_base)
-	shader:dx10texture("s_prev_frame", "$user$generic_temp")
+	// [elseform] SSS24 draws the scope lens after the DLSS upscale, and $user$generic_temp is a
+	// render-resolution copy taken before the forward pass (no reflex/holo reticles, no DLSS).
+	// $user$scene_final is the upscaled frame the engine copies right before this draw.
+	shader:dx10texture("s_prev_frame", "$user$scene_final")
 	shader:dx10texture("s_tonemap", "$user$tonemap")
 	shader:dx10texture("s_heat", "$user$heat")
 	// [elseform] SSS24 uses $user$generic2 as the volumetric light buffer, so bind

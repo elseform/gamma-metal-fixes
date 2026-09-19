@@ -1,23 +1,28 @@
-# Metal - 3DSS5 - Thermal DLSS Buffers
+# Metal - 3DSS5 - SSS24 DLSS Buffers
 
-3D Shader Scopes 5 thermal optics (for example the Torrey Pines T12) show one
-flat colour with no heat signatures on the Screen Space Shaders 24 engine with
-DLSS. A GPU trace of the scope draw shows two independent input faults:
+3D Shader Scopes 5 was written for the stock engine's pass order and render
+targets. On the Screen Space Shaders 24 engine with DLSS, the precise scope
+lens (`models_scope_reticle_precise`) is drawn after the upscale, and two of
+the render targets it names hold something else at that point. GPU traces of
+the lens draw show three faults:
 
-- `models_scope_reticle_precise.s` binds `s_position` to `$user$generic2`.
-  On this engine that name is the volumetric light buffer (the combine
-  volumetric pass reads it next to `$user$position`), not a copy of the
-  position G-buffer. The thermal image took depth and normals from lighting
-  data, read depth 0, and treated the whole view as sky.
-- The scope draw runs after the upscale, where `screen_res` is the output
-  resolution, while the heat buffer and G-buffer stay at the DLSS render
-  resolution. `Load()` positions built from `screen_res` pointed at the wrong
-  texels or past the buffer edge, so heat was lost.
-
-This entry binds `s_position` to `$user$position` and derives every heat and
-G-buffer pixel position (heat reads, contour offsets, the pixelation grid)
-from the heat buffer's own dimensions. It also initializes `hot_color` in
-`infrared()`, which was read uninitialized when a pixel had no heat.
+- **Lens image.** `s_prev_frame` is bound to `$user$generic_temp`. On this
+  engine that is a render-resolution copy taken before the forward pass, so it
+  misses everything the forward pass draws, including reflex/holographic
+  reticles, and it never went through DLSS. A magnifier behind an EOTech
+  showed no reticle, and every magnified image was softer than the rest of the
+  screen. The lens now samples `$user$scene_final`, the upscaled frame the
+  engine copies right before the lens draw.
+- **Thermal depth.** `s_position` is bound to `$user$generic2`. On this engine
+  that is the volumetric light buffer, not a copy of the position G-buffer.
+  Thermal optics took depth and normals from lighting data and showed one flat
+  colour. It is now bound to `$user$position`.
+- **Thermal heat.** `screen_res` in the lens draw is the output resolution,
+  while the heat buffer and G-buffer stay at the DLSS render resolution.
+  `Load()` positions built from `screen_res` pointed at the wrong texels or
+  past the buffer edge. Heat and G-buffer pixel positions now come from the
+  heat buffer's own dimensions (heat reads, contour offsets, the pixelation
+  grid), and `hot_color` in `infrared()` is initialized.
 
 This is an engine/mod interaction, not a Metal translation defect; the same
 engine would show it on Windows.
@@ -28,8 +33,6 @@ engine would show it on Windows.
 - `models_scope_reticle_precise.ps`
 - `thermal_utils.h`
 
-Load after 3D Shader Scopes for GAMMA 5.0 Beta 2. It replaces files that
-`Metal - 3DSS5 - Thermal Cold-Pixel Fix`, `Metal - 3DSS5 - Thermal Pixelation
-Scope-Zoom Fix` and `Metal - 3DSS5 - Lens NaN Guard` also replace; keep those
-disabled while this entry is active. Clear `appdata/shaders_cache/` after
-every toggle.
+Load after 3D Shader Scopes for GAMMA 5.0 Beta 2. It supersedes the retired
+`Metal - 3DSS5 - Thermal Cold-Pixel Fix` and `Metal - 3DSS5 - Thermal
+Pixelation Scope-Zoom Fix`. Clear `appdata/shaders_cache/` after every toggle.

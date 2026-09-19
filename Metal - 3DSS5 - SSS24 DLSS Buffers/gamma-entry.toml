@@ -1,7 +1,7 @@
 schema = 1
-id = "d3dmetal-3dss5-thermal-dlss-buffers"
-name = "Metal - 3DSS5 - Thermal DLSS Buffers"
-summary = "Makes 3DSS5 thermal optics read the real position G-buffer and load heat/G-buffer texels in the buffers' own pixel space under the SSS24 DLSS engine."
+id = "d3dmetal-3dss5-sss24-dlss-buffers"
+name = "Metal - 3DSS5 - SSS24 DLSS Buffers"
+summary = "Points the 3DSS5 precise lens at the render targets the SSS24 DLSS engine actually provides: the upscaled frame for the lens image, the real position G-buffer and correctly scaled heat/G-buffer loads for thermal."
 lifecycle = "wip"
 origin = "rework"
 category = "compatibility"

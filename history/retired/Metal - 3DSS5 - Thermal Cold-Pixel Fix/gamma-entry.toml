@@ -1,8 +1,10 @@
 schema = 1
-id = "d3dmetal-3dss5-lens-nan-guard"
-name = "Metal - 3DSS5 - Lens NaN Guard"
-summary = "Guards 3DSS5 lens projection square roots against Metal NaNs."
-lifecycle = "wip"
+id = "d3dmetal-3dss5-thermal-cold-pixel-fix"
+name = "Metal - 3DSS5 - Thermal Cold-Pixel Fix"
+summary = "Initializes 3DSS5 thermal cold pixels to prevent Metal NaN output."
+lifecycle = "retired"
+retired_at = "2026-09-19"
+retired_reason = "Superseded by Metal - 3DSS5 - SSS24 DLSS Buffers, which carries the heat-buffer pixel size and the hot_color initialization; the 2026-09-17 fix alone made no visible difference in game."
 origin = "rework"
 category = "compatibility"
 implementation_domains = ["shader"]
