@@ -1,0 +1,33 @@
+schema = 1
+id = "d3dmetal-3dss5-thermal-dlss-buffers"
+name = "Metal - 3DSS5 - Thermal DLSS Buffers"
+summary = "Makes 3DSS5 thermal optics read the real position G-buffer and load heat/G-buffer texels in the buffers' own pixel space under the SSS24 DLSS engine."
+lifecycle = "wip"
+origin = "rework"
+category = "compatibility"
+implementation_domains = ["shader"]
+version = "1.0.0"
+maintenance = "active"
+
+[[dependencies]]
+name = "3D Shader Scopes for GAMMA"
+relationship = "load-after"
+version = "5.0 Beta 2"
+
+[[dependencies]]
+name = "Screen Space Shaders"
+relationship = "load-after"
+version = "24"
+
+[[sources]]
+name = "3D Shader Scopes for GAMMA"
+version = "5.0 Beta 2"
+
+[validation]
+state = "static-validated"
+checked_at = "2026-09-19"
+evidence = ["docs/mods/records/trace-2026-09-19-3dss-thermal-and-magnifier-sss24.md"]
+
+[release]
+readiness = "needs-validation"
+blockers = []
