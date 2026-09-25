@@ -5,17 +5,18 @@ entry: d3dmetal-atmospherics-2-69-rc7-2-sss24-core-fixes-elseform
 repository: gamma-metal-fixes
 ---
 
-# Metal - Atmospherics 2.69 RC7.2 SSS24 - Core Fixes TODO
+# Metal - Atmospherics 2.69 RC7.3 SSS24 - Core Fixes TODO
 
 ## Active
 
-- [ ] <!-- task:install-when-sss24-atmos-active --> Install and enable only while `Atmospherics 2.69 RC7.2 SSS24` is the active variant, disabling the SSS23-variant entry at the same time. Both override the same paths and the higher-priority one wins regardless of which source is enabled.
+- [ ] <!-- task:install-when-sss24-atmos-active --> Install and enable only while `Atmospherics 2.69 RC7.3 hotfix SSS24` is the active variant, disabling the SSS23-variant entry at the same time. Both override the same paths and the higher-priority one wins regardless of which source is enabled.
 - [ ] <!-- task:recheck-variant-equality --> Re-run the variant diff after any Atmospherics update: the two variants currently ship byte-identical copies of all three files, which is why this payload matches its sibling. If that stops being true, rebase this entry on the SSS24 variant's own copies.
 
 - [ ] <!-- task:validate-gtao-rsqrt-guards --> `ssfx_ao.ps` added 2026-09-08 (new coverage, not part of the original entry scope — see README item 3): 2 `rsqrt` domain guards added to `ssfx_ao.ps`'s `calc_GTAO()` (`proj_normal_length_sq`, `s_vec_length`, both `continue` on degenerate input). Hand-traced against the live MO2 source, not yet run through `validate_shaders.py` or in-game. Watch for AO flicker/black-square corruption/history smearing at sky boundaries, thin foliage edges, weapon edges, rapid camera motion.
 
 ## Completed
 
+- [x] <!-- task:rename-and-rebase-to-rc7-3 --> Renamed 2026-09-25 from `Metal - Atmospherics 2.69 RC7.2 SSS24 - Core Fixes` to `Metal - Atmospherics 2.69 RC7.3 SSS24 - Core Fixes` for the standalone `Atmospherics 2.69 RC7.3 hotfix SSS24` source. `entry` id left unchanged (stable). All three overridden files (`deffer_terrain_high_flat_d.ps`, `ssfx_ao.ps`, `screenspace_reflections.h`) are byte-identical between RC7.2 and RC7.3 apart from CRLF/whitespace, the payload still differs from the RC7.3 source only by the tagged `[elseform]` lines, and none of their includes changed. RC7.3 changed lighting/BRDF headers (`lmodel.h`, `hmodel.h`, `pbr_*.h`, `common_functions.h`, `mip_fog.h`), `accum_*.ps`, `combine_1.ps`, `ssfx_ssr_gloss.ps` and `screenspace_shadows.h`; none are included by or call into this payload, and the volumetric-sunshaft rewrite and screen-space-sunshaft FOMOD option both keep compile-time-bounded `[loop]`s. RC7.3 dropped its `ssfx_ao_blur.ps` for GTAO Medium, so `ScreenSpaceShaders_Update_24 - RC2`'s copy wins there; it differs from RC7.2's only in its output line and needs no guard. Metadata-only rebase, no patch content changed. Runtime validation (shader cache purge, in-game check) still required.
 - [x] <!-- task:drop-unmodified-ao-blur --> Dropped `ssfx_ao_blur.ps` 2026-09-10. It was audited and correctly needed no guard, but shipping it unmodified still made this entry win that file's conflict, which would mask a future upstream change to it. Overrides now ship only files this entry actually changes.
 
 - [x] <!-- task:fix-terrain-height-blend-divzero --> Investigated 2026-09-08 (project-wide Metal guard audit) as a suspected `HeightBlending()` `sum_h` div-by-zero coverage gap in this entry's `deffer_terrain_high_flat_d.ps`. Found moot — the function's only call site is commented out in this copy and in every other owning mod's copy (including `Metal - Glossy Puddles 1.5 - Terrain Loop Guards`'s "guarded" one). Dead code, no fix needed.

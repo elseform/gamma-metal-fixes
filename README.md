@@ -21,7 +21,7 @@ Atmospherics, and 3D Shader Scopes.
    your game installation after installing or updating shader fixes. The game
    rebuilds the cache on the next launch.
 
-Using Screen Space Shaders 24, Atmospherics 2.69 RC7.2 SSS24, 3D Shader Scopes
+Using Screen Space Shaders 24, Atmospherics 2.69 RC7.3 hotfix SSS24, 3D Shader Scopes
 5, and peak volumetrics? These nine fixes are the selected package for that
 stack. For a different setup, install only fixes matching your source mods
 and read the individual mod README for compatibility details.
@@ -33,7 +33,7 @@ and read the individual mod README for compatibility details.
 | Metal - Anomaly - Core Fixes | Shader compilation and numerical issues | Anomaly base shaders |
 | Metal - Anomaly - Shadow Aref Input Layout | Shadow shader input compatibility | Anomaly base shaders |
 | Metal - peak volumetrics - Volumetric Light Fix | Volumetric light shader compatibility | peak_volumetrics 1.2 |
-| Metal - Atmospherics 2.69 RC7.2 SSS24 - Core Fixes | Terrain and ambient-occlusion shader issues | Atmospherics 2.69 RC7.2 SSS24 |
+| Metal - Atmospherics 2.69 RC7.3 SSS24 - Core Fixes | Terrain and ambient-occlusion shader issues | Atmospherics 2.69 RC7.3 hotfix SSS24 |
 | Metal - 3DSS5 - Mark Switch Grid Loop Guard | Bounds the reticle-grid loop | 3D Shader Scopes 5 |
 | Metal - 3DSS5 - Reflex Sight Motion Vectors | Reflex sight and glass smearing with temporal rendering | 3D Shader Scopes 5 and SSS24 |
 | Metal - 3DSS5 - SSS24 DLSS Buffers | Scope image and thermal buffer compatibility | 3D Shader Scopes 5 and SSS24 DLSS engine |
@@ -73,7 +73,7 @@ Atmospherics и 3D Shader Scopes.
    запуске кеш будет создан заново.
 
 Девять исправлений из таблицы выше составляют выбранный комплект для Screen
-Space Shaders 24, Atmospherics 2.69 RC7.2 SSS24, 3D Shader Scopes 5 и peak
+Space Shaders 24, Atmospherics 2.69 RC7.3 hotfix SSS24, 3D Shader Scopes 5 и peak
 volumetrics. Для другого набора модов выбирайте только подходящие исправления;
 подробности совместимости приведены в README каждого мода внутри архива.
 FOMOD-установщик не нужен. Дополнительные исправления из ветки `dev` в этот

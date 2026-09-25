@@ -1,6 +1,6 @@
-# Metal - Atmospherics 2.69 RC7.2 SSS24 - Core Fixes
+# Metal - Atmospherics 2.69 RC7.3 SSS24 - Core Fixes
 
-Metal compatibility fixes for `Atmospherics 2.69 RC7.2 SSS24`.
+Metal compatibility fixes for `Atmospherics 2.69 RC7.3 hotfix SSS24`.
 
 ---
 
@@ -52,8 +52,8 @@ just means the higher-priority one wins and the other does nothing.
 ## Source and Scope
 
 `deffer_terrain_high_flat_d.ps` and `screenspace_reflections.h` come from
-`Atmospherics 2.69 RC7.2 SSS24`, unmodified aside from the tagged
-`[elseform]` fixes. `ssfx_ao.ps` comes from `Atmospherics 2.69 RC7.2`
+`Atmospherics 2.69 RC7.3 hotfix SSS24`, unmodified aside from the tagged
+`[elseform]` fixes. `ssfx_ao.ps` comes from `Atmospherics 2.69 RC7.3 hotfix SSS24`
 directly, not from a versioned SSS23/SSS24 tier.
 
 `deffer_terrain_high_flat_d.ps`'s unbounded loop also ships, unfixed, in
@@ -66,7 +66,7 @@ file conflict depending on your load order.
 
 ## Installation & Load Order
 
-Load after `Atmospherics 2.69 RC7.2 SSS24`. Purge `appdata/shaders_cache/`
+Load after `Atmospherics 2.69 RC7.3 hotfix SSS24`. Purge `appdata/shaders_cache/`
 after installing or updating.
 
 ## Validation
